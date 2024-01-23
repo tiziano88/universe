@@ -100,4 +100,36 @@ rispuose poi che lagrimar mi vide,
 Â«se vuoâ€™ campar dâ€™esto loco selvaggio:
 chÃ© questa bestia, per la qual tu gride,
 non lascia altrui passar per la sua via,
-ma tanto lo â€™mpedisce che lâ€™uccide;Â‹˜Q	a0lu1lk2b
+ma tanto lo â€™mpedisce che lâ€™uccide;Â‹˜Q	a0lu1lk2b’­±¸ê‘Ì‰ªè!Compile Rust for Raspberry Pi ARMâµçÞIn this article we will build a simple HTTP server application in Rust, cross-compile it for the Raspberry Pi ARM architecture, deploy it to a Raspberry Pi board over a network connection, and install it as a persistent service so that it restarts automatically at boot time and upon crash.
+
+Background
+For the rest of the article, there will be two devices involved:
+
+a development machine, for instance a Linux or Mac laptop or desktop computer, from which we do most of the development.
+a target board, for instance a Raspberry Pi 4, connected to the same network as the development machine, and to which we deploy the compiled binary. We assume that the target board is already configured to be reachable at a given IP address or hostname over the same network as the development machine, and has SSH exposed. We also assume that SSH is configured with public key based authentication, so that no password is required every time we connect to it.
+Installing Rust
+First, we install Rust on the development machine, following the instructions from https://www.rust-lang.org/tools/install via the interactive rustup installer.
+
+Hello World!
+We first create the directory that will contain our Rust project. The simplest way is to manually create an empty folder with the desired name (e.g. mkdir hello-world), cd into it, and run cargo init --bin; this creates all the necessary source files for an executable (binary) hello world application.
+
+We test that things are working fine by running cargo run from within this folder, which compiles and runs the hello world application (for now we are still doing everything on the development machine itself). If everything is working, we see an Hello, world! message printed to the terminal. So far so good!
+
+Hello Web!
+To make things more interesting, we will build an HTTP server application, which keeps running indefinitely in the background.
+
+There are a few excellent alternatives when it comes to HTTP server frameworks in Rust. Rocket is my personal favorite, but it requires a nightly version of the Rust compiler, so for this tutorial we will go with Actix to keep things simple.
+
+First we add a dependency on the actix-web crate to the Cargo.toml file:
+
+[dependencies]
+actix-web = "3.1.0"
+Then we (mostly) copy the basic example from the Actix home page into ./src/main.rs (by replacing all its existing content), with some modifications:
+
+Â‹˜Q$6f17b3e3-d476-409f-9f09-0541fa9282ec’­±ˆê‘ÌÙ
+ªèFalsifiable Open Sourceâµç¸
+Scientific theories
+Let's consider the statement "all swans are white", as a scientific theory. How many white swans would you have to observe before you can claim that such a statement is scientifically verified? 1? 1,000? 1,000,000? It seems clear that, no matter how many white swans are observed, there is still some chance that some yet-to-be-observed swan may not be white. On the other hand, observing a single black swan immediately falsifies the theory (i.e. it conclusively renders it false).
+At the core of modern philosophy of science lies this profound asymmetry between verifiability and falsifiability. This is fundamentally true for any theory in the realm of experimental (i.e. inductive) sciences (e.g. physics, biology). Deductive sciences instead, such as mathematics, work through a sequence of assumptions and deductions in order to arrive at a definitely true conclusion (e.g. Pythagoras theorem).
+Karl Popper in his book The Logic of Scientific Discovery (1934) states that a theory or hypothesis is falsifiable (or refutable) if it can be logically contradicted by an empirical test. A scientific theory is only ever accepted as valid "until proven otherwise". There is no notion of an absolutely true scientific theory. The value of a scientific theory is greater the higher its likelihood of being falsified.
+Â‹˜Q$8a125079-48ad-4407-a30b-3c54128882b4
